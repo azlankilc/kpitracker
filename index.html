@@ -45,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Sedikit lebih gelap agar terlihat */
+            background: rgba(255, 255, 255, 0.9);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -577,7 +577,6 @@
     </div>
 
     <!-- Modals lainnya... -->
-    <!-- Catatan: Semua modal seperti KPI Modal, User Modal, dll. masih ada di sini, tetapi tidak disertakan dalam respons untuk mempersingkat kode dan fokus pada perubahan skrip utama. -->
     
     <script>
         // === ⚠️ PENTING: URL WEB APP GOOGLE SHEET ANDA ⚠️ ===
@@ -597,7 +596,6 @@
         let departmentChart = null;
         
         // --- DEFAULT USER/ROLE (Tanpa Halaman Login) ---
-        // Aplikasi akan menggunakan profil ini untuk menampilkan dashboard
         let currentUser = {
             id: 'admin_default',
             name: "Admin Publik",
@@ -646,7 +644,6 @@
             console.log(`[API] Mengambil data dari sheet: ${sheetName}`);
             const URL = `${SHEET_DB_API_URL}?sheet=${sheetName}`;
             try {
-                // Menggunakan fetchWithTimeout
                 const response = await fetchWithTimeout(URL, { timeout: 15000 }); 
 
                 if (!response.ok) {
@@ -702,7 +699,6 @@
             const payload = { id: id, data: updateFields };
 
             try {
-                // Menggunakan fetchWithTimeout
                 const response = await fetchWithTimeout(`${SHEET_DB_API_URL}?sheet=${sheetName}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -763,7 +759,7 @@
                         currentUser.permissions = adminRole.permissions;
                     }
                 }
-                updateUserInterface(); // Panggil update UI setelah data dimuat
+                updateUserInterface();
 
                 // Build organization structure dynamically
                 organizationStructure = {};
@@ -912,7 +908,6 @@
         // --- Event Listeners and Initialization ---
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Hapus event listener login karena tidak digunakan
             loadInitialData();
         });
     </script>
